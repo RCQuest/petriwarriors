@@ -85,9 +85,9 @@ public class ParticipantHandler : MonoBehaviour
 		//if(res.canSpawnWithCost(GameConfig.GRUNTCOST)) Debug.Log ("spawned");
 		if(spawnMode==SpawnMode.GRUNT&&res.canSpawnWithCost(GameConfig.GRUNTCOST)&&(core.transform.position-start).magnitude<GameConfig.SPAWNDISTANCE)
 		{
-			GameObject germ = (Network.Instantiate (gruntPrefab, 
+			GameObject germ = (Instantiate (gruntPrefab, 
 			              new Vector2(start.x,start.y), 
-			              Quaternion.identity,0)
+			              Quaternion.identity)
 			                   as GameObject);
 			germ
 				.GetComponent<Germ2> ()
@@ -107,9 +107,9 @@ public class ParticipantHandler : MonoBehaviour
 		}
 		else if(spawnMode==SpawnMode.DIRECTOR&&res.canSpawnWithCost(GameConfig.DIRECTORCOST))
 		{
-			GameObject germ = (Network.Instantiate(pointerPrefab,
+			GameObject germ = (Instantiate(pointerPrefab,
 			             new Vector2(start.x,start.y),
-			             Quaternion.identity,0)
+			             Quaternion.identity)
 			                   as GameObject);
 			germ.GetComponent<Pointer>()
 					.create(new Vector2(direction.x,direction.y),
@@ -131,9 +131,9 @@ public class ParticipantHandler : MonoBehaviour
 				if(pointer.GetComponent<MAttributes>().faction.Equals (faction)) pointer.GetComponent<Pointer>().die();
 			}
 			specialCharge=0.0f;
-			GameObject germ = (Network.Instantiate(specialPrefab,
+			GameObject germ = (Instantiate(specialPrefab,
 			             new Vector2(start.x,start.y),
-			             Quaternion.identity,0)
+			             Quaternion.identity)
 			                   as GameObject);
 			germ.GetComponent<Special>()
 					.create(new Vector2(direction.x,direction.y),

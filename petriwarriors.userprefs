@@ -1,10 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\TBG\Project\Assets\scripts\PlayerMove.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Resources.cs">
     <Files>
-      <File FileName="..\TBG\Project\Assets\scripts\Legacy\Dice.cs" Line="39" Column="40" />
+      <File FileName="Assets\scripts\Resources.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\GameController.cs" Line="1" Column="1" />
+      <File FileName="..\TBG\Project\Assets\scripts\Legacy\Dice.cs" Line="1" Column="1" />
       <File FileName="..\TBG\Project\Assets\scripts\Legacy\Nonfundamental\OrbitDice.cs" Line="1" Column="1" />
-      <File FileName="..\TBG\Project\Assets\scripts\PlayerMove.cs" Line="48" Column="5" />
+      <File FileName="..\TBG\Project\Assets\scripts\PlayerMove.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

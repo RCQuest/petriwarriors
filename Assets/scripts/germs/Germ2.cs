@@ -90,9 +90,9 @@ public class Germ2 : MonoBehaviour
 		                    						move.x*Mathf.Sin (-GameConfig.SPREADTHETA)+move.y*Mathf.Cos (-GameConfig.SPREADTHETA)).normalized;
 		//Debug.Log ("SPREADANGLE: "+childMove+" "+move);
 		if(childMove.magnitude<0.1f) childMove = childMove + Random.insideUnitCircle;
-		GameObject germ = (Network.Instantiate (childPrefab, 
+		GameObject germ = (Instantiate (childPrefab, 
 		              transform.position, 
-		              Quaternion.identity,0)
+		              Quaternion.identity)
 		                   as GameObject);
 		germ.GetComponent<Germ2> ()
 				.create (Mathf.Abs (splitRate+((Random.value-0.5f)*mutationRate)),

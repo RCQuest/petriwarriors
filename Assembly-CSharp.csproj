@@ -50,18 +50,31 @@
      <Compile Include="Assets\scripts\Core.cs" />
      <Compile Include="Assets\scripts\GameConfig.cs" />
      <Compile Include="Assets\scripts\GameController.cs" />
-     <Compile Include="Assets\scripts\MovementNetworking.cs" />
-     <Compile Include="Assets\scripts\NetworkManager.cs" />
      <Compile Include="Assets\scripts\ParticipantHandler.cs" />
      <Compile Include="Assets\scripts\PlayerHandler.cs" />
-     <Compile Include="Assets\scripts\PlayerNetworking.cs" />
      <Compile Include="Assets\scripts\Resources.cs" />
      <Compile Include="Assets\scripts\germs\Germ2.cs" />
      <Compile Include="Assets\scripts\germs\MAttributes.cs" />
      <Compile Include="Assets\scripts\germs\Pointer.cs" />
      <Compile Include="Assets\scripts\germs\Special.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\Actions\BinarySerialization.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\Actions\IAction.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\Actions\NoAction.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\Lockstep\ConfirmedActions.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\Lockstep\IHasGameFrame.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\Lockstep\LockStepManager.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\Lockstep\PendingActions.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\Networking\NetworkHostMessages.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\Networking\NetworkManager.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\SceneManager.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\log4net\CWDFileAppender.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\log4net\Unity3DConsoleAppender.cs" />
+     <None Include="Assets\scripts\lockstep-engine\resources\logConfig.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="log4net">
+ <HintPath>C:/Users/Rachel/SkyDrive/Documents/Game Production/petriwarriors/Assets/scripts/lockstep-engine/code/log4net/log4net.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
