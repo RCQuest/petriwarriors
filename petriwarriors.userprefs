@@ -1,12 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Resources.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\lockstep-engine\code\Actions\SpawnUnit.cs">
     <Files>
-      <File FileName="Assets\scripts\Resources.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\GameController.cs" Line="1" Column="1" />
-      <File FileName="..\TBG\Project\Assets\scripts\Legacy\Dice.cs" Line="1" Column="1" />
-      <File FileName="..\TBG\Project\Assets\scripts\Legacy\Nonfundamental\OrbitDice.cs" Line="1" Column="1" />
-      <File FileName="..\TBG\Project\Assets\scripts\PlayerMove.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\lockstep-engine\code\SceneManager.cs" Line="54" Column="15" />
+      <File FileName="Assets\scripts\lockstep-engine\code\Networking\NetworkHostMessages.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\lockstep-engine\code\Networking\NetworkManager.cs" Line="82" Column="21" />
+      <File FileName="Assets\scripts\lockstep-engine\code\Lockstep\ConfirmedActions.cs" Line="53" Column="2" />
+      <File FileName="Assets\scripts\lockstep-engine\code\Lockstep\IHasGameFrame.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\lockstep-engine\code\Lockstep\LockStepManager.cs" Line="343" Column="61" />
+      <File FileName="Assets\scripts\lockstep-engine\code\Lockstep\PendingActions.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\lockstep-engine\code\Actions\BinarySerialization.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\lockstep-engine\code\Actions\IAction.cs" Line="26" Column="2" />
+      <File FileName="Assets\scripts\lockstep-engine\code\Actions\NoAction.cs" Line="24" Column="1" />
+      <File FileName="Assets\scripts\lockstep-engine\code\Actions\SpawnUnit.cs" Line="15" Column="66" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
