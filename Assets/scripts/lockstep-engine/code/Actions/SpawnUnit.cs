@@ -4,16 +4,34 @@
 public class SpawnUnit : IAction
 {
 	int owningPlayer;
-	int buildingID;
+	int spawnID;
+	SpawnMode mode;
+
 	
-	public SpawnUnit (int owningPlayer, int buildingID) {
+	public SpawnUnit (int owningPlayer, int spawnID, SpawnMode mode) {
 		this.owningPlayer = owningPlayer;
-		this.buildingID = buildingID;
+		this.spawnID = spawnID;
+		this.mode = mode;
 	}
 	
 	public void ProcessAction() {
-		//<<>> b = SceneManager.Manager.<<>>(owningPlayer, buildingID);
-		//b.SpawnUnit();
+		Spawner unit = SceneManager.Manager.CreateUnit(owningPlayer, spawnID);
+		switch(mode)
+		{
+		case SpawnMode.DIRECTOR:
+			unit.SpawnDirector();
+			break;
+		case SpawnMode.GRUNT:
+			unit.SpawnGrunt();
+			break;
+		case SpawnMode.SPECIAL:
+			unit.SpawnSpecial();
+			break;
+		default:
+			unit.SpawnGrunt();
+			break;
+		}
+
 	}
 
 }

@@ -85,61 +85,15 @@ public class ParticipantHandler : MonoBehaviour
 		//if(res.canSpawnWithCost(GameConfig.GRUNTCOST)) Debug.Log ("spawned");
 		if(spawnMode==SpawnMode.GRUNT&&res.canSpawnWithCost(GameConfig.GRUNTCOST)&&(core.transform.position-start).magnitude<GameConfig.SPAWNDISTANCE)
 		{
-			GameObject germ = (Instantiate (gruntPrefab, 
-			              new Vector2(start.x,start.y), 
-			              Quaternion.identity)
-			                   as GameObject);
-			germ
-				.GetComponent<Germ2> ()
-					.create (Mathf.Abs (splitRate+((Random.value-0.5f)*mutationRate)),
-					         Mathf.Abs (attackPotency+((Random.value-0.5f)*mutationRate)),
-					         Mathf.Abs (decayRate+((Random.value-0.5f)*0.001f)),
-					         faction,
-					         mutationRate*0.9f,
-					         new Vector2(direction.x,direction.y),
-					         speed,
-					         res,
-					         splitting);
-			
-			res.decrementBy(GameConfig.GRUNTCOST);
-			//germ.transform.parent = transform.parent;
-			germ.GetComponent<Germ2> ().childPrefab=this.gruntPrefab;
+
 		}
 		else if(spawnMode==SpawnMode.DIRECTOR&&res.canSpawnWithCost(GameConfig.DIRECTORCOST))
 		{
-			GameObject germ = (Instantiate(pointerPrefab,
-			             new Vector2(start.x,start.y),
-			             Quaternion.identity)
-			                   as GameObject);
-			germ.GetComponent<Pointer>()
-					.create(new Vector2(direction.x,direction.y),
-					        res);
-			//Debug.Log ("POINTER");
-			res.decrementBy(GameConfig.DIRECTORCOST);
-			//germ.transform.parent = transform.parent;
+
 		}
 		else if(spawnMode==SpawnMode.SPECIAL&&res.canSpawnWithCost(GameConfig.SPECIALCOST)&&specialCharge>1.0f)
 		{
-			GameObject[] grunts = GameObject.FindGameObjectsWithTag ("Germ");
-			foreach(GameObject grunt in grunts)
-			{
-				if(grunt.GetComponent<MAttributes>().faction.Equals (faction)) grunt.GetComponent<Germ2>().die();
-			}
-			GameObject[] pointers = GameObject.FindGameObjectsWithTag ("Pointer");
-			foreach(GameObject pointer in pointers)
-			{
-				if(pointer.GetComponent<MAttributes>().faction.Equals (faction)) pointer.GetComponent<Pointer>().die();
-			}
-			specialCharge=0.0f;
-			GameObject germ = (Instantiate(specialPrefab,
-			             new Vector2(start.x,start.y),
-			             Quaternion.identity)
-			                   as GameObject);
-			germ.GetComponent<Special>()
-					.create(new Vector2(direction.x,direction.y),
-					        res);
-			res.decrementBy(GameConfig.SPECIALCOST);
-			//germ.transform.parent = transform.parent;
+
 		}
 		else
 		{}

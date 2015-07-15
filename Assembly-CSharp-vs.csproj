@@ -61,6 +61,7 @@
      <Compile Include="Assets\scripts\lockstep-engine\code\Actions\IAction.cs" />
      <Compile Include="Assets\scripts\lockstep-engine\code\Actions\NoAction.cs" />
      <Compile Include="Assets\scripts\lockstep-engine\code\Actions\SpawnUnit.cs" />
+     <Compile Include="Assets\scripts\lockstep-engine\code\Actions\Spawner.cs" />
      <Compile Include="Assets\scripts\lockstep-engine\code\Lockstep\ConfirmedActions.cs" />
      <Compile Include="Assets\scripts\lockstep-engine\code\Lockstep\IHasGameFrame.cs" />
      <Compile Include="Assets\scripts\lockstep-engine\code\Lockstep\LockStepManager.cs" />

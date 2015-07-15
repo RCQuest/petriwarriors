@@ -41,14 +41,9 @@ public class SceneManager : MonoBehaviour {
 		GameFrameObjects = new List<IHasGameFrame>();
 	}
 	
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public Spawner CreateUnit(int owningPlayer,int spawnID)
+	{
+		return new Spawner();
 	}
 	
 	/// <summary>

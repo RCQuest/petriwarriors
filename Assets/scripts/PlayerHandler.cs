@@ -15,11 +15,7 @@ public class PlayerHandler : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (this.GetComponentInParent<NetworkView>().isMine)
-		{
-			inputMovement();
-		}
-
+		inputMovement();
 	}
 	private void inputMovement()
 	{
