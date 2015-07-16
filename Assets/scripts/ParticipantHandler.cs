@@ -21,7 +21,7 @@ public class ParticipantHandler : MonoBehaviour
 	public float splitRate;
 	public float attackPotency;
 	public float decayRate;
-	public string faction;
+	public int faction;
 	public float mutationRate;
 	public float speed;
 	public Resources res;
@@ -85,15 +85,54 @@ public class ParticipantHandler : MonoBehaviour
 		//if(res.canSpawnWithCost(GameConfig.GRUNTCOST)) Debug.Log ("spawned");
 		if(spawnMode==SpawnMode.GRUNT&&res.canSpawnWithCost(GameConfig.GRUNTCOST)&&(core.transform.position-start).magnitude<GameConfig.SPAWNDISTANCE)
 		{
-
+			LockStepManager.Instance.AddAction(new SpawnUnit(spawnMode, 
+			                                                 faction,
+			                                                 0,
+			                                                 start.x,
+			                                                 start.y,
+			                                                 splitRate,
+			                                                 mutationRate,
+			                                                 attackPotency,
+			                                                 decayRate,
+			                                                 direction.x,
+			                                                 direction.y,
+			                                                 speed,
+			                                                 splitting
+				));
 		}
 		else if(spawnMode==SpawnMode.DIRECTOR&&res.canSpawnWithCost(GameConfig.DIRECTORCOST))
 		{
-
+			LockStepManager.Instance.AddAction(new SpawnUnit(spawnMode, 
+			                                                 faction,
+			                                                 0,
+			                                                 start.x,
+			                                                 start.y,
+			                                                 splitRate,
+			                                                 mutationRate,
+			                                                 attackPotency,
+			                                                 decayRate,
+			                                                 direction.x,
+			                                                 direction.y,
+			                                                 speed,
+			                                                 splitting
+			                                                 ));
 		}
 		else if(spawnMode==SpawnMode.SPECIAL&&res.canSpawnWithCost(GameConfig.SPECIALCOST)&&specialCharge>1.0f)
 		{
-
+			LockStepManager.Instance.AddAction(new SpawnUnit(spawnMode, 
+			                                                 faction,
+			                                                 0,
+			                                                 start.x,
+			                                                 start.y,
+			                                                 splitRate,
+			                                                 mutationRate,
+			                                                 attackPotency,
+			                                                 decayRate,
+			                                                 direction.x,
+			                                                 direction.y,
+			                                                 speed,
+			                                                 splitting
+			                                                 ));
 		}
 		else
 		{}

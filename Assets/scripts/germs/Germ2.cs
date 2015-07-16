@@ -23,7 +23,7 @@ public class Germ2 : MonoBehaviour
 	public void create(float splitRate, 
 	                   float attackPotency, 
 	                   float decayRate, 
-	                   string faction,
+	                   int faction,
 	                   float mutationRate,
 	                   //Transform parentGroup,
 	                   Vector2 move,
@@ -90,22 +90,20 @@ public class Germ2 : MonoBehaviour
 		                    						move.x*Mathf.Sin (-GameConfig.SPREADTHETA)+move.y*Mathf.Cos (-GameConfig.SPREADTHETA)).normalized;
 		//Debug.Log ("SPREADANGLE: "+childMove+" "+move);
 		if(childMove.magnitude<0.1f) childMove = childMove + Random.insideUnitCircle;
-		GameObject germ = (Instantiate (childPrefab, 
-		              transform.position, 
-		              Quaternion.identity)
-		                   as GameObject);
-		germ.GetComponent<Germ2> ()
-				.create (Mathf.Abs (splitRate+((Random.value-0.5f)*mutationRate)),
-				         Mathf.Abs (attackPotency+((Random.value-0.5f)*mutationRate)),
-				         Mathf.Abs (decayRate+((Random.value-0.5f)*0.001f)),
-				         attributes.faction,
-				         mutationRate*0.9f,
-				         childMove.normalized,//+Random.insideUnitCircle,
-				         speed,
-				         res,
-				         splitting);
-		germ.transform.parent=transform.parent;
-		germ.GetComponent<Germ2>().childPrefab=this.childPrefab;
+		LockStepManager.Instance.AddAction(new SpawnUnit(SpawnMode.GRUNT, 
+		                                                 attributes.faction,
+		                                                 0,
+		                                                 transform.position.x,
+		                                                 transform.position.y,
+		                                                 splitRate,
+		                                                 mutationRate,
+		                                                 attackPotency,
+		                                                 decayRate,
+		                                                 childMove.x,
+		                                                 childMove.y,
+		                                                 speed,
+		                                                 splitting
+		                                                 ));
 		splitTime=1;
 		res.decrement();
 	}

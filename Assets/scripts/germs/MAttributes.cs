@@ -4,5 +4,5 @@ using System.Collections;
 public class MAttributes : MonoBehaviour 
 {
 	public float health;
-	public string faction;
+	public int faction;
 }

@@ -29,11 +29,16 @@ using System.Collections.Generic;
 using System.IO;
 using log4net.Config;
 
-public class SceneManager : MonoBehaviour {
+public class SceneManager : MonoBehaviour 
+{
 	
 	public static SceneManager Manager;
+	public GameObject playerPrefab;
 	
 	public List<IHasGameFrame> GameFrameObjects;
+	public GameObject gruntPrefab;
+	public GameObject specialPrefab;
+	public GameObject directorPrefab;
 	
 	void Awake() {
 		SetupLog ();
@@ -41,11 +46,62 @@ public class SceneManager : MonoBehaviour {
 		GameFrameObjects = new List<IHasGameFrame>();
 	}
 	
-	public Spawner CreateUnit(int owningPlayer,int spawnID)
+	public Spawner CreateUnit(int owningPlayer,
+	                          int spawnID,
+	                          float startX,
+	                          float startY,
+	                          float splitRate,
+	                          float mutationRate,
+	                          float attackPotency,
+	                          float decayRate,
+	                          float directionX,
+	                          float directionY,
+	                          float speed,
+	                          bool splitting)
 	{
-		return new Spawner();
+		return new Spawner(startX,
+		                   startY,
+		                   splitRate,
+		                   mutationRate,
+		                   attackPotency,
+		                   decayRate,
+		                   owningPlayer,
+		                   directionX,
+		                   directionY,
+		                   speed,
+		                   splitting);
 	}
-	
+
+	public Resources GetRes(int playerID)
+	{
+		return null;
+	}
+
+	public GameObject GetGruntPrefab()
+	{
+		return gruntPrefab;
+	}
+
+	public GameObject GetDirectorPrefab()
+	{
+		return directorPrefab;
+	}
+
+	public GameObject GetSpecialPrefab()
+	{
+		return specialPrefab;
+	}
+
+	public void CreatePlayer()
+	{
+
+	}
+
+	public void ResetSpecialCharge(int playerID)
+	{
+
+	}
+
 	/// <summary>
 	/// Reads in the log configuration for log4net.
 	/// </summary>
