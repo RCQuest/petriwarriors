@@ -27,8 +27,6 @@ using System.Collections.Generic;
 [RequireComponent(typeof(NetworkView))]
 public class LockStepManager : MonoBehaviour {
 	
-	private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-	
 	public static readonly int FirstLockStepTurnID = 0;
 	
 	public static LockStepManager Instance;
@@ -74,7 +72,7 @@ public class LockStepManager : MonoBehaviour {
 	}
 	public void PrepGameStart() {
 		
-		log.Debug ("GameStart called. My PlayerID: " + Network.player.ToString());
+		Debug.Log ("GameStart called. My PlayerID: " + Network.player.ToString());
 		LockStepTurnID = FirstLockStepTurnID;
 		numberOfPlayers = networkManager.NumberOfPlayers;
 		pendingActions = new PendingActions(this);
@@ -88,7 +86,7 @@ public class LockStepManager : MonoBehaviour {
 	
 	private void CheckGameStart() {
 		if(playersConfirmedImReady == null) {
-			log.Debug("WARNING!!! Unexpected null reference during game start. IsInit? " + initialized);
+			Debug.Log("WARNING!!! Unexpected null reference during game start. IsInit? " + initialized);
 			return;
 		}
 		//check if all expected players confirmed our gamestart message
@@ -96,7 +94,7 @@ public class LockStepManager : MonoBehaviour {
 			//check if all expected players sent their gamestart message
 			if(readyPlayers.Count == numberOfPlayers - 1) {
 				//we are ready to start
-				log.Debug("All players are ready to start. Starting Game.");
+				Debug.Log("All players are ready to start. Starting Game.");
 				
 				//we no longer need these lists
 				playersConfirmedImReady = null;
@@ -115,7 +113,7 @@ public class LockStepManager : MonoBehaviour {
 	
 	[RPC]
 	public void ReadyToStart(string playerID) {
-		log.Debug("Player " + playerID + " is ready to start the game.");
+		Debug.Log("Player " + playerID + " is ready to start the game.");
 		
 		//make sure initialization has already happened -incase another player sends game start before we are ready to handle it
 		InitGameStartLists();;
@@ -137,17 +135,17 @@ public class LockStepManager : MonoBehaviour {
 	public void ConfirmReadyToStartServer(string confirmingPlayerID, string confirmedPlayerID) {
 		if(!Network.isServer) { return; } //workaround when multiple players running on same machine
 		
-		log.Debug("Server Message: Player " + confirmingPlayerID + " is confirming Player " + confirmedPlayerID + " is ready to start the game.");
+		Debug.Log("Server Message: Player " + confirmingPlayerID + " is confirming Player " + confirmedPlayerID + " is ready to start the game.");
 		
 		//validate ID
 		if(!networkManager.players.ContainsKey(confirmingPlayerID)) {
 			//TODO: error handling
-			log.Debug("Server Message: WARNING!!! Unrecognized confirming playerID: " + confirmingPlayerID);
+			Debug.Log("Server Message: WARNING!!! Unrecognized confirming playerID: " + confirmingPlayerID);
 			return;
 		}
 		if(!networkManager.players.ContainsKey(confirmedPlayerID)) {
 			//TODO: error handling
-			log.Debug("Server Message: WARNING!!! Unrecognized confirmed playerID: " + confirmingPlayerID);
+			Debug.Log("Server Message: WARNING!!! Unrecognized confirmed playerID: " + confirmingPlayerID);
 		}
 		
 		//relay message to confirmed client
@@ -164,7 +162,7 @@ public class LockStepManager : MonoBehaviour {
 	public void ConfirmReadyToStart(string confirmedPlayerID, string confirmingPlayerID) {
 		if(!Network.player.ToString().Equals(confirmedPlayerID)) { return; }
 		
-		//log.Debug ("Player " + confirmingPlayerID + " confirmed I am ready to start the game.");
+		//Debug.Log ("Player " + confirmingPlayerID + " confirmed I am ready to start the game.");
 		playersConfirmedImReady.Add (confirmingPlayerID);
 		
 		//Check if we can start the game
@@ -174,16 +172,16 @@ public class LockStepManager : MonoBehaviour {
 	
 	#region Actions
 	public void AddAction(IAction action) {
-		log.Debug ("Action Added");
+		Debug.Log ("Action Added");
 		if(!initialized) {
-			log.Debug("Game has not started, action will be ignored.");
+			Debug.Log("Game has not started, action will be ignored.");
 			return;
 		}
 		actionsToSend.Enqueue(action);
 	}
 	
 	private bool LockStepTurn() {
-		log.Debug ("LockStepTurnID: " + LockStepTurnID);
+		Debug.Log ("LockStepTurnID: " + LockStepTurnID);
 		//Check if we can proceed with the next turn
 		bool nextTurn = NextTurn();
 		if(nextTurn) {
@@ -204,13 +202,13 @@ public class LockStepManager : MonoBehaviour {
 	/// it will return false.
 	/// </summary>
 	private bool NextTurn() {
-//		log.Debug ("Next Turn Check: Current Turn - " + LockStepTurnID);
-//		log.Debug ("    priorConfirmedCount - " + confirmedActions.playersConfirmedPriorAction.Count);
-//		log.Debug ("    currentConfirmedCount - " + confirmedActions.playersConfirmedCurrentAction.Count);
-//		log.Debug ("    allPlayerCurrentActionsCount - " + pendingActions.CurrentActions.Count);
-//		log.Debug ("    allPlayerNextActionsCount - " + pendingActions.NextActions.Count);
-//		log.Debug ("    allPlayerNextNextActionsCount - " + pendingActions.NextNextActions.Count);
-//		log.Debug ("    allPlayerNextNextNextActionsCount - " + pendingActions.NextNextNextActions.Count);
+//		Debug.Log ("Next Turn Check: Current Turn - " + LockStepTurnID);
+//		Debug.Log ("    priorConfirmedCount - " + confirmedActions.playersConfirmedPriorAction.Count);
+//		Debug.Log ("    currentConfirmedCount - " + confirmedActions.playersConfirmedCurrentAction.Count);
+//		Debug.Log ("    allPlayerCurrentActionsCount - " + pendingActions.CurrentActions.Count);
+//		Debug.Log ("    allPlayerNextActionsCount - " + pendingActions.NextActions.Count);
+//		Debug.Log ("    allPlayerNextNextActionsCount - " + pendingActions.NextNextActions.Count);
+//		Debug.Log ("    allPlayerNextNextNextActionsCount - " + pendingActions.NextNextNextActions.Count);
 		
 		if(confirmedActions.ReadyForNextTurn() && pendingActions.ReadyForNextTurn()) {
 			//increment the turn ID
@@ -243,7 +241,7 @@ public class LockStepManager : MonoBehaviour {
 		//send action to all other players
 		nv.RPC("RecieveAction", RPCMode.Others, LockStepTurnID, Network.player.ToString(), BinarySerialization.SerializeObjectToByteArray(action));
 		
-		log.Debug("Sent " + (action.GetType().Name) + " action for turn " + LockStepTurnID);
+		Debug.Log("Sent " + (action.GetType().Name) + " action for turn " + LockStepTurnID);
 	}
 	
 	private void ProcessActions() {
@@ -254,10 +252,10 @@ public class LockStepManager : MonoBehaviour {
 	
 	[RPC]
 	public void RecieveAction(int lockStepTurn, string playerID, byte[] actionAsBytes) {
-		//log.Debug ("Recieved Player " + playerID + "'s action for turn " + lockStepTurn + " on turn " + LockStepTurnID);
+		//Debug.Log ("Recieved Player " + playerID + "'s action for turn " + lockStepTurn + " on turn " + LockStepTurnID);
 		IAction action = BinarySerialization.DeserializeObject<IAction>(actionAsBytes);
 		if(action == null) {
-			log.Debug ("Sending action failed");
+			Debug.Log ("Sending action failed");
 			//TODO: Error handle invalid actions recieve
 		} else {
 			pendingActions.AddAction(action, Convert.ToInt32(playerID), LockStepTurnID, lockStepTurn);
@@ -276,8 +274,8 @@ public class LockStepManager : MonoBehaviour {
 	public void ConfirmActionServer(int lockStepTurn, string confirmingPlayerID, string confirmedPlayerID) {
 		if(!Network.isServer) { return; } //Workaround - if server and client on same machine
 		
-		//log.Debug("ConfirmActionServer called turn:" + lockStepTurn + " playerID:" + confirmingPlayerID);
-		//log.Debug("Sending Confirmation to player " + confirmedPlayerID);
+		//Debug.Log("ConfirmActionServer called turn:" + lockStepTurn + " playerID:" + confirmingPlayerID);
+		//Debug.Log("Sending Confirmation to player " + confirmedPlayerID);
 		
 		if(Network.player.ToString().Equals(confirmedPlayerID)) {
 			//we don't need an RPC call if this is the server
@@ -290,7 +288,7 @@ public class LockStepManager : MonoBehaviour {
 	[RPC]
 	public void ConfirmAction(int lockStepTurn, string confirmingPlayerID) {
 		NetworkPlayer player = networkManager.players[confirmingPlayerID];
-		//log.Debug ("Player " + confirmingPlayerID + " confirmed action for turn " + lockStepTurn + " on turn " + LockStepTurnID);
+		//Debug.Log ("Player " + confirmingPlayerID + " confirmed action for turn " + lockStepTurn + " on turn " + LockStepTurnID);
 		if(lockStepTurn == LockStepTurnID) {
 			//if current turn, add to the current Turn Confirmation
 			confirmedActions.playersConfirmedCurrentAction.Add (player);
@@ -299,7 +297,7 @@ public class LockStepManager : MonoBehaviour {
 			confirmedActions.playersConfirmedPriorAction.Add (player);
 		} else {
 			//TODO: Error Handling
-			log.Debug ("WARNING!!!! Unexpected lockstepID Confirmed : " + lockStepTurn + " from player: " + confirmingPlayerID);
+			Debug.Log ("WARNING!!!! Unexpected lockstepID Confirmed : " + lockStepTurn + " from player: " + confirmingPlayerID);
 		}
 	}
 	#endregion

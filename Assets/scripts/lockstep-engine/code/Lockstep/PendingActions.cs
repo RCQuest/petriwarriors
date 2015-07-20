@@ -21,11 +21,10 @@
 //THE SOFTWARE.
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PendingActions
 {
-	private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-	
 	public IAction[] CurrentActions;
 	private IAction[] NextActions;
 	private IAction[] NextNextActions;
@@ -51,6 +50,7 @@ public class PendingActions
 		nextActionsCount = 0;
 		nextNextActionsCount = 0;
 		nextNextNextActionsCount = 0;
+
 	}
 	
 	public void NextTurn() {
@@ -82,7 +82,7 @@ public class PendingActions
 			//if action is for next turn, add for processing 3 turns away
 			if(NextNextNextActions[playerID] != null) {
 				//TODO: Error Handling
-				log.Debug ("WARNING!!!! Recieved multiple actions for player " + playerID + " for turn "  + actionsLockStepTurn);
+				Debug.Log ("WARNING!!!! Recieved multiple actions for player " + playerID + " for turn "  + actionsLockStepTurn);
 			}
 			NextNextNextActions[playerID] = action;
 			nextNextNextActionsCount++;
@@ -91,7 +91,7 @@ public class PendingActions
 			//add for processing 2 turns away
 			if(NextNextActions[playerID] != null) {
 				//TODO: Error Handling
-				log.Debug ("WARNING!!!! Recieved multiple actions for player " + playerID + " for turn "  + actionsLockStepTurn);
+				Debug.Log ("WARNING!!!! Recieved multiple actions for player " + playerID + " for turn "  + actionsLockStepTurn);
 			}
 			NextNextActions[playerID] = action;
 			nextNextActionsCount++;
@@ -100,13 +100,13 @@ public class PendingActions
 			//add for processing 1 turn away
 			if(NextActions[playerID] != null) {
 				//TODO: Error Handling
-				log.Debug ("WARNING!!!! Recieved multiple actions for player " + playerID + " for turn "  + actionsLockStepTurn);
+				Debug.Log ("WARNING!!!! Recieved multiple actions for player " + playerID + " for turn "  + actionsLockStepTurn);
 			}
 			NextActions[playerID] = action;
 			nextActionsCount++;
 		} else {
 			//TODO: Error Handling
-			log.Debug ("WARNING!!!! Unexpected lockstepID recieved : " + actionsLockStepTurn);
+			Debug.Log ("WARNING!!!! Unexpected lockstepID recieved : " + actionsLockStepTurn);
 			return;
 		}
 	}

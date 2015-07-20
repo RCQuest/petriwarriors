@@ -69,14 +69,9 @@
      <Compile Include="Assets\scripts\lockstep-engine\code\Networking\NetworkHostMessages.cs" />
      <Compile Include="Assets\scripts\lockstep-engine\code\Networking\NetworkManager.cs" />
      <Compile Include="Assets\scripts\lockstep-engine\code\SceneManager.cs" />
-     <Compile Include="Assets\scripts\lockstep-engine\code\log4net\CWDFileAppender.cs" />
-     <Compile Include="Assets\scripts\lockstep-engine\code\log4net\Unity3DConsoleAppender.cs" />
      <None Include="Assets\scripts\lockstep-engine\resources\logConfig.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="log4net">
- <HintPath>C:/Users/Rachel/SkyDrive/Documents/Game Production/petriwarriors/Assets/scripts/lockstep-engine/code/log4net/log4net.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

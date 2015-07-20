@@ -79,7 +79,7 @@ public class Germ2 : MonoBehaviour
 	public void die()
 	{
 		res.increment();
-		Network.Destroy (this.gameObject);
+		Destroy (this.gameObject);
 	}
 	
 	private void split()

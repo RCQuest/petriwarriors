@@ -27,7 +27,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using log4net.Config;
 
 public class SceneManager : MonoBehaviour 
 {
@@ -39,6 +38,8 @@ public class SceneManager : MonoBehaviour
 	public GameObject gruntPrefab;
 	public GameObject specialPrefab;
 	public GameObject directorPrefab;
+
+    public Resources tempResources;
 	
 	void Awake() {
 		SetupLog ();
@@ -59,6 +60,7 @@ public class SceneManager : MonoBehaviour
 	                          float speed,
 	                          bool splitting)
 	{
+
 		return new Spawner(startX,
 		                   startY,
 		                   splitRate,
@@ -74,7 +76,7 @@ public class SceneManager : MonoBehaviour
 
 	public Resources GetRes(int playerID)
 	{
-		return null;
+		return tempResources;
 	}
 
 	public GameObject GetGruntPrefab()
